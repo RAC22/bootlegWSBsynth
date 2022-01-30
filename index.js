@@ -34,7 +34,7 @@ function play(){
     if (hasEnabledVoice) {
         return;
     }
-    const lecture = new SpeechSynthesisUtterance('hello');
+    const lecture = new SpeechSynthesisUtterance('hi');
     lecture.volume = 0;
     speechSynthesis.speak(lecture);
     hasEnabledVoice = true;
@@ -81,9 +81,15 @@ function play(){
             }
             voice();           
         })
-        .catch(error=>console.log(error + ' error loading thread')) 
+        .catch((error)=>{
+            console.log(error + ' error loading thread')
+            stop();
+        }) 
     })
-    .catch(error=>console.log(error + ' error loading wsb'))
+    .catch((error)=>{
+        console.log(error + ' error loading wsb')
+        stop();
+    })
     
     
 }
@@ -96,10 +102,10 @@ async function voice(){
     prevPosts = []
 
     if(filterd.length == 0){
-        console.log('Stopped, no new posts')
-        posts = []
-        prevPosts = []
-        stop();
+        console.log('waiting for new posts')
+        document.getElementById('commentBox').innerHTML = 'Waiting for new posts..'
+        document.getElementById('authorBox').innerHTML = ''
+        await new Promise(resolve => setTimeout(resolve, 10000))
     }
 
     console.log(filterd.length+' actual length')
@@ -133,7 +139,7 @@ async function readIt(phrase, author, commentLink){
     console.log(phrase)
     msg.text = phrase;
     window.speechSynthesis.cancel();
-    setTimeout(()=>{window.speechSynthesis.speak(msg)},1250)
+    setTimeout(()=>{window.speechSynthesis.speak(msg)},1000)
     if(operatingSystem === 'Windows'){
         clearInterval(hackResume);
         hackResume = setInterval(function () {
