@@ -281,7 +281,7 @@ window.speechSynthesis.onvoiceschanged = () => {populateVoiceList()}
 var video = document.createElement('video');
 video.setAttribute('loop', '');
 // Add some styles if needed
-video.setAttribute('style', 'position: fixed;');
+video.setAttribute('style', 'position: fixed; opacity: 0;');
 
 
 // A helper to add sources to video
