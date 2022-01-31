@@ -225,8 +225,7 @@ function populateVoiceList() {
     if(typeof speechSynthesis === 'undefined') {
         return;
     }
-    var sel = document.getElementById('voiceSelect');
-    console.log(sel.value)
+    
     voices = speechSynthesis.getVoices();
 
     for(var i = 0; i < voices.length; i++) {
@@ -283,7 +282,7 @@ var video = document.createElement('video');
 video.setAttribute('loop', '');
 // Add some styles if needed
 video.setAttribute('style', 'position: fixed;');
-video.classList.add('d-none')
+
 
 // A helper to add sources to video
 function addSourceToVideo(element, type, dataURI) {
