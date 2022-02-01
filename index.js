@@ -77,6 +77,9 @@ function play(){
                 if (body.match(emoteRegex)){
                     body = body.replace(emoteRegex, '')
                 }
+                if (body.match('^')){
+                    body = body.replace('^', ' ')
+                }
                 posts.push({author: tard, comment: body, commentLink: commenturl});
                 
             }
