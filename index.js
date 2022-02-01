@@ -10,6 +10,8 @@ let bufferNumber = 5
 let maxBuffer
 let urlExpression = /(?:(?:https?|ftp|file):\/\/|www\.|ftp\.)(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[-A-Z0-9+&@#\/%=~_|$?!:,.])*(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[A-Z0-9+&@#\/%=~_|$])/igm;
 let emoteExpression = /!+[\[]+(img)+[\]]+[(]+(emote\|)+(\w*)+[\|]+(\d*)+[\)]/gmis
+let otherEmote = /!+(\[gif]\(emote\|free_emotes_pack\|)+(\w*\))/gmis
+let carrot = /\^/g
 let urlRegex = new RegExp(urlExpression);
 let emoteRegex = new RegExp(emoteExpression)
 let playing = false
@@ -77,8 +79,11 @@ function play(){
                 if (body.match(emoteRegex)){
                     body = body.replace(emoteRegex, '')
                 }
-                if (body.match('^')){
-                    body = body.replace('^', ' ')
+                if (body.match(carrot)){
+                    body = body.replace(carrot, ' ')
+                }
+                if (body.match(otherEmote)){
+                    body = body.replace(otherEmote, '')
                 }
                 posts.push({author: tard, comment: body, commentLink: commenturl});
                 
