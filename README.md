@@ -4,19 +4,12 @@ Streams the fast moving daily discussion thread of the [WallStreetBets](https://
 
 ## Description
 
-I used to listen to this website [WSBsynth.com](https://wsbsynth.com), which did practically the same thing. However it is now abandoned.. So I thought it would be a fun project to try and recreate
+I used to listen to this website [WSBsynth.com](https://wsbsynth.com), which did practically the same thing. However it is now abandoned.. So I thought it would be a fun project to try and recreate.
+I believe the original did the sysnthesis server side, and streamed to the clients. Which was probably more costly than it was worth. So in this iteration, the synthesis is all done client side, via the SpeachSynthesis Web API. The downside is that the voices available are os/browser dependent.  
 
 ## Getting Started
 
-Check out live via github pages [here.](https://rac22.github.io/bootlegWSBsynth/)
-
-## Help
-
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
-```
-
+Check out live via github pages @[BootlegWSBsynth](https://rac22.github.io/bootlegWSBsynth/)
 
 
 ## Acknowledgments
