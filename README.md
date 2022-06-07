@@ -12,7 +12,7 @@ User beware, I do not control the content that is displayed/read, as it is a liv
 ## Getting Started
 
 Check out live via github pages @[BootlegWSBsynth](https://rac22.github.io/bootlegWSBsynth/)
-I reccomend the google UK male voice. As it adds an ironic sophistication to the absurdity. 
+I reccomend the Google UK English-Male voice. As it adds an ironic sophistication to the absurdity. 
 
 
 ## Acknowledgments
