@@ -18,4 +18,4 @@ I recommend the Google UK English-Male voice. As it adds an ironic sophisticatio
 ## Acknowledgments
 
 Inspiration.
-* [WSBsynth.com](https://wsbsynth.com) 
+* [WSBsynth.com](https://wsbsynth.com)
