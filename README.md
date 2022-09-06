@@ -1,6 +1,6 @@
 # BootlegWSBsynth
 
-Streams the fast moving daily discussion thread of the [WallStreetBets](https://www.reddit.com/r/wallstreetbets/) subreddit. Via text to speach synthesis. 
+Streams the fast moving daily discussion thread of the [WallStreetBets](https://www.reddit.com/r/wallstreetbets/) subreddit. Via text to speech synthesis. 
 
 ## Description
 
