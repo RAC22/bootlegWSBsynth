@@ -54,7 +54,7 @@ function play(){
 
     fetch(wsbUrl)
     .then(data=>{return data.json()})
-    .then(res=>{    
+    .then(res=>{
         wsbDDthread = new Request(res.data.children[0].data.url + '.json')
         threadLinkUrl = wsbDDthread.url
         threadLinkUrl = threadLinkUrl.replace('.json', '')
@@ -86,24 +86,22 @@ function play(){
                     body = body.replace(otherEmote, '')
                 }
                 posts.push({author: tard, comment: body, commentLink: commenturl});
-                
             }
-            voice();           
+            voice();
         })
         .catch((error)=>{
             console.log(error + ' error loading thread')
             stop();
-        }) 
+        })
     })
     .catch((error)=>{
         console.log(error + ' error loading wsb')
         stop();
     })
-    
-    
 }
+
 async function voice(){
-    
+
     //check duplicates
     let previousComments = new Set(prevPosts.map(post => post.comment));
     let filterd = posts.filter(post => !previousComments.has(post.comment))
@@ -123,7 +121,7 @@ async function voice(){
         if(playing){
             debugCounter++
             await readIt(filterd[i].comment, filterd[i].author, filterd[i].commentLink)
-        }else{ 
+        }else{
             prevPosts = posts
             posts = []
             return ;}
@@ -138,7 +136,7 @@ async function voice(){
 }
 
 async function readIt(phrase, author, commentLink){
-    
+
     msg.onend = function () { console.log("on end!"); }
     msg.onerror = function () { console.log("on error!"); }
     msg.onpause = function () { console.log("on pause"); }
@@ -168,7 +166,6 @@ async function readIt(phrase, author, commentLink){
         document.getElementById('authorBox').innerHTML = author;
         document.getElementById("linkToComment").innerHTML = '  - Link to comment';
         document.getElementById("linkToComment").setAttribute("href",commentLink);
-        
 
         msg.onend = resolve;
     })
@@ -177,7 +174,7 @@ async function readIt(phrase, author, commentLink){
 
 
 function stop (){
-    
+
     debugCounter = 0
     bufferNumber = 5
     playing = false
@@ -219,31 +216,32 @@ function skip (){
 
 
 if (typeof speechSynthesis !== 'undefined' && speechSynthesis.onvoiceschanged !== undefined) {
-  speechSynthesis.onvoiceschanged = populateVoiceList;
+    speechSynthesis.onvoiceschanged = populateVoiceList;
 }
 
 function populateVoiceList() {
     function removeOptions(selectElement) {
-    var i, L = selectElement.options.length - 1;
-    for(i = L; i >= 0; i--) {
-    selectElement.remove(i);
+        var i, L = selectElement.options.length - 1;
+        for(i = L; i >= 0; i--) {
+            selectElement.remove(i);
         }
     }
     removeOptions(document.getElementById('voiceSelect'));
     if(typeof speechSynthesis === 'undefined') {
         return;
     }
-    
     voices = speechSynthesis.getVoices();
 
     for(var i = 0; i < voices.length; i++) {
         var option = document.createElement('option');
         option.textContent = voices[i].name + ' (' + voices[i].lang + ')';
-        
-    option.setAttribute('data-lang', voices[i].lang);
-    option.setAttribute('data-name', voices[i].name);
-    document.getElementById("voiceSelect").appendChild(option);
-    
+        option.setAttribute('data-lang', voices[i].lang);
+        option.setAttribute('data-name', voices[i].name);
+        document.getElementById("voiceSelect").appendChild(option);
+        if(option.textContent == 'Google UK English Male (en-GB)'){
+            option.setAttribute('selected', true)
+            selectChange()
+        }
     }
 }
 
@@ -275,8 +273,8 @@ window.addEventListener('load', function () {
 
     if(operatingSystem == 'Android'){
         let select = document.getElementById('voiceSelect')
-        select.classList.add('d-none') 
-        document.getElementById('androidHelp').classList.remove('d-none')       
+        select.classList.add('d-none')
+        document.getElementById('androidHelp').classList.remove('d-none')
     }
     if(operatingSystem === 'Mac OS' || operatingSystem === 'iOS'){
         document.getElementById('skipButton').remove();
