@@ -228,7 +228,6 @@ function changePitch() {
 	msg.pitch = pitch;
 }
 function skip() {
-	console.log(msg);
 	window.speechSynthesis.cancel();
 }
 
