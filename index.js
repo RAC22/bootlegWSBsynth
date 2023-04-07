@@ -188,8 +188,8 @@ async function readIt(phrase, author, commentLink) {
 		document.getElementById("authorBox").innerHTML = author;
 		document.getElementById("linkToComment").innerHTML = "  - Link to comment";
 		document.getElementById("linkToComment").setAttribute("href", commentLink);
-
 		msg.onend = resolve;
+		msg.onerror = resolve;
 	});
 }
 
@@ -228,6 +228,7 @@ function changePitch() {
 	msg.pitch = pitch;
 }
 function skip() {
+	console.log(msg);
 	window.speechSynthesis.cancel();
 }
 
