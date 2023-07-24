@@ -11,6 +11,10 @@
 			crossorigin="anonymous"
 		/>
 		<link rel="stylesheet" href="index.css" />
+		<link
+			rel="stylesheet"
+			href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
+		/>
 		<title>Bootleg WSBsynth</title>
 	</head>
 	<!-- Google tag (gtag.js) -->
@@ -79,29 +83,22 @@
 		</div>
 		<br />
 		<br />
-		<div class="d-flex justify-content-center">
-			<div class="controlContainer">
-				<input id="placeholder" class="d-none" />
-				<input
-					type="image"
-					src="imgs/playdark.png"
-					id="playButton"
-					onclick="play()"
-				/>
-				<input
-					type="image"
-					src="imgs/stophollow.png"
-					id="stopButton"
-					onclick="stop()"
-					class="d-none"
-				/>
-				<input
-					type="image"
-					src="imgs/forwardone.png"
-					id="skipButton"
-					onclick="skip()"
-					class="d-none"
-				/>
+		<div class="media-player">
+			<div class="controls">
+				<ul class="text-center" id="mediaControls">
+					<li id="reverseButton" onclick="backOne()">
+						<i class="fa fa-step-backward fa-fw"></i>
+					</li>
+					<li id="playButton" onclick="play()">
+						<i class="fa fa-play fa-fw"></i>
+					</li>
+					<li id="stopButton" class="d-none" onclick="stop()">
+						<i class="fa fa-stop fa-fw"></i>
+					</li>
+					<li id="skipButton" onclick="skip()">
+						<i class="fa fa-step-forward fa-fw"></i>
+					</li>
+				</ul>
 			</div>
 		</div>
 		<br />

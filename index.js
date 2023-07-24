@@ -18,10 +18,11 @@ let playing = false;
 let playButton = document.getElementById("playButton");
 let stopButton = document.getElementById("stopButton");
 let skipButton = document.getElementById("skipButton");
-let placeholder = document.getElementById("placeholder");
+let placeholder = document.getElementById("reverseButton");
 let hackResume;
 let debugCounter = 0;
 let threadLinkUrl;
+let goBack = false;
 
 let pitch = 1; // between .1 and 2
 let speed = 1; //between .1 and 2
@@ -126,11 +127,20 @@ async function voice() {
 	for (let i = 0; i < filterd.length; i++) {
 		if (playing) {
 			debugCounter++;
+			if (i < 0) {
+				continue;
+			}
 			await readIt(
 				filterd[i].comment,
 				filterd[i].author,
 				filterd[i].commentLink
 			);
+			if (goBack) {
+				console.log(`i = ${i}`);
+				i -= 2;
+				debugCounter--;
+				goBack = false;
+			}
 		} else {
 			prevPosts = posts;
 			posts = [];
@@ -201,12 +211,17 @@ function stop() {
 	window.speechSynthesis.cancel();
 	stopButton.classList.add("d-none");
 	playButton.classList.remove("d-none");
-	skipButton.classList.add("d-none");
-	placeholder.classList.add("d-none");
+	// skipButton.classList.add("d-none");
+	// placeholder.classList.add("d-none");
 	prevPosts = posts;
 	posts = [];
 }
-
+function backOne() {
+	if (playing) {
+		goBack = true;
+	}
+	window.speechSynthesis.cancel();
+}
 function selectChange() {
 	var sel = document.getElementById("voiceSelect");
 	console.log(sel.selectedIndex);
@@ -290,7 +305,6 @@ window.addEventListener("load", function () {
 	}
 	populateVoiceList();
 	getOs();
-
 	if (operatingSystem == "Android") {
 		let select = document.getElementById("voiceSelect");
 		select.classList.add("d-none");
@@ -298,6 +312,7 @@ window.addEventListener("load", function () {
 	}
 	if (operatingSystem === "Mac OS" || operatingSystem === "iOS") {
 		document.getElementById("skipButton").remove();
+		document.getElementById("reverseButton").remove();
 	}
 });
 
