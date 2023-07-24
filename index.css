@@ -155,11 +155,16 @@
 	padding: 15px;
 	cursor: pointer;
 	border-radius: 50%;
-	background-color: #a7a7a7;
+	background: radial-gradient(#c5c5c5, rgb(133, 133, 133));
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 	font-size: 1.5rem;
+	border-style: solid;
+	border-width: 1px;
+	border-color: rgb(83, 83, 83);
 }
-
+.media-player .controls ul li i {
+	margin: 0px 2px;
+}
 .media-player .controls ul li:hover {
 	background-color: #b4b4b4;
 }
