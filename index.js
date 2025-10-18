@@ -42,7 +42,7 @@ function play() {
 		hasEnabledVoice = true
 	})
 
-	let wsbUrl = new Request("https://www.reddit.com/r/wallstreetbets/.json")
+	let wsbUrl = new Request("https://api.reddit.com/r/wallstreetbets/.json")
 	let wsbDDthread
 
 	playing = true
@@ -51,7 +51,9 @@ function play() {
 	skipButton.classList.remove("d-none")
 	placeholder.classList.remove("d-none")
 
-	fetch(wsbUrl)
+	fetch(wsbUrl, {
+		mode: "cors",
+	})
 		.then((data) => {
 			return data.json()
 		})
@@ -59,8 +61,9 @@ function play() {
 			let dailydiscussionidx = 0
 			for (idx in res.data.children) {
 				const phrase = "Daily Discussion Thread"
+				const AltPhrase = "What Are Your Moves Tomorrow"
 				const title = res.data.children[idx].data.title
-				if (title.includes(phrase)) {
+				if (title.includes(phrase) || title.includes(AltPhrase)) {
 					dailydiscussionidx = idx
 				}
 			}
